@@ -10,10 +10,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   TodoService _todoService;
 
   List<Todo> _todoList = List<Todo>();
+
 
   @override
   initState() {
@@ -41,18 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // TRY THIS: https://flutter.dev/docs/cookbook/navigation/returning-data
+  // https://stackoverflow.com/questions/49663679/navigate-back-and-show-snack
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         //Navigate to todo create screen BUT also call build method to refresh todo list after
         onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => TodoScreen())).then((value){
-              setState(() {
-                getAllTodos();
-              });
-            }),
+            .push(MaterialPageRoute(builder: (context) => TodoScreen()))
+            .then((value) {
+          setState(() {
+            getAllTodos();
             
+          });
+        }),
 
         child: Icon(Icons.add),
       ),
@@ -64,11 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: _todoList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding:  EdgeInsets.only(top:8.0, left:8.0, right: 8.0),
+            padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
             child: Card(
               elevation: 8,
-              shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
               child: ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

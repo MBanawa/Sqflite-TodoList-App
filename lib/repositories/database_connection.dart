@@ -22,3 +22,4 @@ class DatabaseConnection {
         "CREATE TABLE todos(id INTEGER PRIMARY KEY, title TEXT, description TEXT, category TEXT, todoDate TEXT, isFinished INTEGER)");
   }
 }
+

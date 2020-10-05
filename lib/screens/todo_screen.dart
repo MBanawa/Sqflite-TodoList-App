@@ -66,14 +66,14 @@ class _TodoScreenState extends State<TodoScreen> {
     }
   }
 
-  _showSuccessSnackBar(message) {
-    var _snackBar = SnackBar(
-      content: message,
-      backgroundColor: Colors.green,
-      duration: const Duration(milliseconds: 1000),
-    );
-    _globalKey.currentState.showSnackBar(_snackBar);
-  }
+  // _showSuccessSnackBar(message) {
+  //   var _snackBar = SnackBar(
+  //     content: message,
+  //     backgroundColor: Colors.green,
+  //     duration: const Duration(milliseconds: 1000),
+  //   );
+  //   _globalKey.currentState.showSnackBar(_snackBar);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +140,9 @@ class _TodoScreenState extends State<TodoScreen> {
                   var _todoService = TodoService();
                   var result = await _todoService.saveTodo(todoObject);
                   if (result > 0) {
-                    _showSuccessSnackBar(Text('Item Sucessfuly Created!'));
-                    //TODO: how to add the getAllTodos here?
-                    //_homeScreen.getAllTodos();
-                    Navigator.pop(context);
+                    // _showSuccessSnackBar(Text('Item Sucessfuly Created!'));
+                    Navigator.pop(context, 'Saved!');
+                    
                   }
            
                 },

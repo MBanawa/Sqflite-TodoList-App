@@ -85,19 +85,25 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           return AlertDialog(
             actions: [
               FlatButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () { Navigator.pop(context);
+                _categoryNameController.clear();
+                _categoryDescriptionController.clear();
+                },
                 color: Colors.red,
                 child: Text('Cancel'),
               ),
               FlatButton(
                 color: Colors.green,
-                onPressed: () async {                  
+                onPressed: () async {        
+                            
                   _category.name = _categoryNameController.text;
                   _category.description = _categoryDescriptionController.text;
                   var result = await _categoryService.saveCategory(_category);
                   if (result > 0) {
                     Navigator.pop(context);
                     getAllCategories();
+                    _categoryNameController.clear();
+                    _categoryDescriptionController.clear();
                     _showSuccessSnackBar(
                       Text('Category Successfully Added!'),
                     );
@@ -110,6 +116,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             content: SingleChildScrollView(
                 child: Column(
               children: [
+                
                 TextField(
                   controller: _categoryNameController,
                   decoration: InputDecoration(
@@ -224,6 +231,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           );
         });
   }
+
 
   @override
   Widget build(BuildContext context) {
